@@ -8,6 +8,5 @@ public class Inventario : BaseEntity
     public int ValorVtaUsd { get; set;}
 
     public ICollection<InventarioTalla> InventariosTallas{ get; set;}
-    public ICollection<Talla> Talla{ get; set;}
     public ICollection<DetalleVenta> DetallesVentas{ get; set;}
 }

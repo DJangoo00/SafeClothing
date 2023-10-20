@@ -1,5 +1,5 @@
 namespace Domain.Entities;
-public class InsumoPrenda
+public class InsumoPrenda : BaseEntity
 {
     public int IdInsumoFk { get; set;}
     public Insumo Insumo { get; set;}

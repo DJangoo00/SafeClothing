@@ -19,15 +19,17 @@ namespace Persistencia.Data.Configuration
             .HasColumnType("Varchar")
             .HasMaxLength(50);
 
-            builder.Property(p => p.Direccion)
+            builder.Property(p => p.Nit)
             .IsRequired()
-            .HasColumnType("Varchar")
-            .HasMaxLength(50);
+            .HasColumnType("int");
 
-            builder.Property(p => p.Telefono)
-            .IsRequired()
-            .HasColumnType("Varchar")
-            .HasMaxLength(20);
+            builder.HasOne(p => p.TipoPersona)
+            .WithMany(p => p.Proveedores)
+            .HasForeignKey(p => p.IdTipoPersonaFk);
+
+            builder.HasOne(p => p.Municipio)
+            .WithMany(p => p.Proveedores)
+            .HasForeignKey(p => p.IdMunicipioFk);
         }
     }
 }

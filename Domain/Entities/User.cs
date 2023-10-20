@@ -14,5 +14,4 @@ public class User : BaseEntity
     public ICollection<RefreshToken> RefreshTokens { get; set; } = new HashSet<RefreshToken>();
     public ICollection<RoleUser> RolesUsers { get; set; }
     
-    public ICollection<MovimientoMedicamento> MovimientosMedicamentos { get; set; }
 }
