@@ -6,7 +6,7 @@ using Domain.Entities;
 
 namespace API.Dtos
 {
-    public class DetalleVenta : BaseEntity
+    public class DetalleVentaDto : BaseEntity
     {
         public int IdVentaFk { get; set; }
         public Venta Venta { get; set; }

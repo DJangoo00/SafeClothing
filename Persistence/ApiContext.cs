@@ -14,8 +14,8 @@ public class ApiContext : DbContext //Clase de abstraccion para facilitar intera
     public DbSet<Cliente> Clientes { get; set; }
     public DbSet<Color> Colores { get; set; }
     public DbSet<Departamento> Departamentos { get; set; }
-    public DbSet<DetalleOrden> DetalleOrdenes { get; set; }
-    public DbSet<DetalleVenta> DetalleVentas { get; set; }
+    public DbSet<DetalleOrden> DetallseOrdenes { get; set; }
+    public DbSet<DetalleVenta> DetallesVentas { get; set; }
     public DbSet<Empleado> Empleados { get; set; }
     public DbSet<Empresa> Empresas { get; set; }
     public DbSet<Estado> Estados { get; set; }
@@ -32,9 +32,9 @@ public class ApiContext : DbContext //Clase de abstraccion para facilitar intera
     public DbSet<Prenda> Prendas { get; set; }
     public DbSet<Proveedor> Proveedores { get; set; }
     public DbSet<Talla> Tallas { get; set; }
-    public DbSet<TipoEstado> TipoEstados { get; set; }
-    public DbSet<TipoPersona> TipoPersonas { get; set; }
-    public DbSet<TipoProteccion> TipoProtecciones { get; set; }
+    public DbSet<TipoEstado> TiposEstados { get; set; }
+    public DbSet<TipoPersona> TiposPersonas { get; set; }
+    public DbSet<TipoProteccion> TiposProtecciones { get; set; }
     public DbSet<Venta> Ventas { get; set; }
 
     
