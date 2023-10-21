@@ -11,13 +11,13 @@ using Microsoft.AspNetCore.Authorization;
 namespace API.Controllers;
 [ApiVersion("1.0")]
 [ApiVersion("1.1")]
-public class CargoController : BaseApiController
+public class TallaController : BaseApiController
 {
     private readonly IUnitOfWork unitofwork;
     private readonly IMapper mapper;
     private readonly IUserService _Userservice;
 
-    public CargoController(IUnitOfWork unitofwork, IMapper mapper, IUserService Userservice)
+    public TallaController(IUnitOfWork unitofwork, IMapper mapper, IUserService Userservice)
     {
         this.unitofwork = unitofwork;
         this.mapper = mapper;
@@ -30,10 +30,10 @@ public class CargoController : BaseApiController
     [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerable<CargoDto>>> Get()
+    public async Task<ActionResult<IEnumerable<TallaDto>>> Get()
     {
-        var entidad = await unitofwork.Cargos.GetAllAsync();
-        return mapper.Map<List<CargoDto>>(entidad);
+        var entidad = await unitofwork.Tallas.GetAllAsync();
+        return mapper.Map<List<TallaDto>>(entidad);
     }
     [HttpGet("{id}")]
     [Authorize]
@@ -41,28 +41,28 @@ public class CargoController : BaseApiController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<CargoDto>> Get(int id)
+    public async Task<ActionResult<TallaDto>> Get(int id)
     {
-        var entidad = await unitofwork.Cargos.GetByIdAsync(id);
+        var entidad = await unitofwork.Tallas.GetByIdAsync(id);
         if (entidad == null)
         {
             return NotFound();
         }
-        return this.mapper.Map<CargoDto>(entidad);
+        return this.mapper.Map<TallaDto>(entidad);
     }
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
 
-    public async Task<ActionResult<CargoDto>> Put(int id, [FromBody] CargoDto entidadDto)
+    public async Task<ActionResult<TallaDto>> Put(int id, [FromBody] TallaDto entidadDto)
     {
         if (entidadDto == null)
         {
             return NotFound();
         }
-        var entidad = this.mapper.Map<Cargo>(entidadDto);
-        unitofwork.Cargos.Update(entidad);
+        var entidad = this.mapper.Map<Talla>(entidadDto);
+        unitofwork.Tallas.Update(entidad);
         await unitofwork.SaveAsync();
         return entidadDto;
     }
@@ -72,12 +72,12 @@ public class CargoController : BaseApiController
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(int id)
     {
-        var entidad = await unitofwork.Cargos.GetByIdAsync(id);
+        var entidad = await unitofwork.Tallas.GetByIdAsync(id);
         if (entidad == null)
         {
             return NotFound();
         }
-        unitofwork.Cargos.Remove(entidad);
+        unitofwork.Tallas.Remove(entidad);
         await unitofwork.SaveAsync();
         return NoContent();
     }
@@ -89,10 +89,10 @@ public class CargoController : BaseApiController
     [MapToApiVersion("1.1")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<Pager<CargoDto>>> GetPagination([FromQuery] Params pagparams)
+    public async Task<ActionResult<Pager<TallaDto>>> GetPagination([FromQuery] Params pagparams)
     {
-        var entidad = await unitofwork.Cargos.GetAllAsync(pagparams.PageIndex, pagparams.PageSize, pagparams.Search);
-        var listEntidad = mapper.Map<List<CargoDto>>(entidad.registros);
-        return new Pager<CargoDto>(listEntidad, entidad.totalRegistros, pagparams.PageIndex, pagparams.PageSize, pagparams.Search);
+        var entidad = await unitofwork.Tallas.GetAllAsync(pagparams.PageIndex, pagparams.PageSize, pagparams.Search);
+        var listEntidad = mapper.Map<List<TallaDto>>(entidad.registros);
+        return new Pager<TallaDto>(listEntidad, entidad.totalRegistros, pagparams.PageIndex, pagparams.PageSize, pagparams.Search);
     }
 }
