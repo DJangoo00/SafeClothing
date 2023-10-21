@@ -61,7 +61,7 @@ public class ColoresController : BaseApiController
         {
             return NotFound();
         }
-        var entidad = this.mapper.Map<Colores>(entidadDto);
+        var entidad = this.mapper.Map<Color>(entidadDto);
         unitofwork.Colores.Update(entidad);
         await unitofwork.SaveAsync();
         return entidadDto;
